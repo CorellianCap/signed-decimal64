@@ -1,0 +1,43 @@
+[package]
+name = "signed-decimal64"
+version = "0.1.0"
+edition = "2021"
+description = "Signed wrapper around decimal64::DecimalU64<S> (bool sign + magnitude) with arithmetic, rounding, serde, macros, and benches."
+repository = "https://github.com/CorellianCap/signed-decimal64"
+
+[dependencies]
+decimal64 = "0.0.7"
+
+serde = { version = "1", features = ["derive"], optional = true }
+
+[features]
+default = []
+alloc = []
+std = []
+serde = ["dep:serde", "alloc"]
+
+[dev-dependencies]
+criterion = { version = "0.7.0", features = ["html_reports"] }
+serde_json = "1"
+bincode = "2.0.1"
+
+[[bench]]
+name = "add_sub"
+harness = false
+
+[[bench]]
+name = "mul_div"
+harness = false
+
+[[bench]]
+name = "round"
+harness = false
+
+[[bench]]
+name = "rescale"
+harness = false
+
+[[bench]]
+name = "serde_json"
+harness = false
+required-features = ["serde"]
